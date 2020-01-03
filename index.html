@@ -3,83 +3,95 @@
 
 <head>
     <meta charset="UTF-8">
-
     <title>Memory Game</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
 	
 	<div id="progress-bar">
 		<div id="progress-bar-left"></div>
+		<div id="clickCounter"></div>
 	</div>
 	
 	<div style="clear:both;"></div>
 	
 	<div id="main">
-    <section class="memory-game"></section>
 	
+		<div class="memory-card" data-framework="1">
+			<img class="front-side" src="game-images/1.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="1">
+			<img class="front-side" src="game-images/1.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+
+		<div class="memory-card" data-framework="2">
+			<img class="front-side" src="game-images/2.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="2">
+			<img class="front-side" src="game-images/2.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+
+		<div class="memory-card" data-framework="3">
+			<img class="front-side" src="game-images/3.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="3">
+			<img class="front-side" src="game-images/3.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+
+		<div class="memory-card" data-framework="4">
+			<img class="front-side" src="game-images/4.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="4">
+			<img class="front-side" src="game-images/4.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+
+		<div class="memory-card" data-framework="5">
+			<img class="front-side" src="game-images/5.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="5">
+			<img class="front-side" src="game-images/5.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+
+		<div class="memory-card" data-framework="6">
+			<img class="front-side" src="game-images/6.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+		<div class="memory-card" data-framework="6">
+			<img class="front-side" src="game-images/6.jpg" />
+			<img class="back-side" src="game-images/image-cover.jpg" />
+		</div>
+	</div>
+	<div id="bottom-button">
+		<button onclick="startRestart()" id="startButton" type="button">Start / Restart</button>
+	</div>	
 	
-	
-    <div class="memory-card" data-framework="1">
-        <img class="front-side" src="game-images/1.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="1">
-        <img class="front-side" src="game-images/1.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
-    <div class="memory-card" data-framework="2">
-        <img class="front-side" src="game-images/2.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="2">
-        <img class="front-side" src="game-images/2.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
-    <div class="memory-card" data-framework="3">
-        <img class="front-side" src="game-images/3.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="3">
-        <img class="front-side" src="game-images/3.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
-    <div class="memory-card" data-framework="4">
-        <img class="front-side" src="game-images/4.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="4">
-        <img class="front-side" src="game-images/4.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
-    <div class="memory-card" data-framework="5">
-        <img class="front-side" src="game-images/5.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="5">
-        <img class="front-side" src="game-images/5.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
-    <div class="memory-card" data-framework="6">
-        <img class="front-side" src="game-images/6.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-    <div class="memory-card" data-framework="6">
-        <img class="front-side" src="game-images/6.jpg" />
-        <img class="back-side" src="game-images/image-cover.jpg" />
-    </div>
-
+	<!-- modal -->
+	<div id="gameModal" class="modal">
+	  <!-- modal content -->
+	  <div class="modal-content">
+		<p id="congraModel">Congratulation!</p>
+		<p>Number of clicks: <span id="numClicksModel"></span></p>
+		<p>The time to win: <span id="timeToWinModel"></span></p>
+		<p>
+			<button class="buttonModel" onclick="restartModel()" type="button">Restart</button>
+			<button class="buttonModel" onclick="closeModel()" type="button">Close</button>
+		</p>		
+	  </div>
 	</div>
 
-    <script src="scripts.js"></script>
+    <script src="scripts.js"></script>	
 </body>
 
 </html>
