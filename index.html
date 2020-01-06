@@ -9,7 +9,13 @@
 </head>
 
 <body>
-	
+	<div id="star" class="star">		
+		<span id="star-0" class="star-original">&bigstar;</span>
+		<span id="star-1" class="star-original">&bigstar;</span>
+		<span id="star-2" class="star-original">&bigstar;</span>
+		<span id="star-3" class="star-original">&bigstar;</span>
+		<span id="star-4" class="star-original">&bigstar;</span>
+	</div>
 	<div id="progress-bar">
 		<div id="progress-bar-left"></div>
 		<div id="clickCounter"></div>
@@ -84,6 +90,7 @@
 		<p id="congraModel">Congratulation!</p>
 		<p>Number of clicks: <span id="numClicksModel"></span></p>
 		<p>The time to win: <span id="timeToWinModel"></span></p>
+		<div id="starModel" class="star"></div>
 		<p>
 			<button class="buttonModel" onclick="restartModel()" type="button">Restart</button>
 			<button class="buttonModel" onclick="closeModel()" type="button">Close</button>
