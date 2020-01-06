@@ -126,21 +126,26 @@ function updateTimer(){
 	//%
 	var percent  = counter * 100 / totalCounter;
 	
+	if (counter >= totalCounter)
+	{//time out		
+		percent = 100; //100%
+	}
+	
 	document.getElementById("progress-bar-left").style.width = percent + "%";
 	document.getElementById("progress-bar-left").innerHTML =  Math.floor(percent) + "%&nbsp";
 	
+	//calculate and display the stars
+	calculateStar(percent);
+	
 	if (openedCards == cards.length){
 		endGame();
-	}else if (counter >= totalCounter)
+	}else if (percent == 100)
 	{//check time out
 		
 		document.getElementById("progress-bar-left").style.width = "100%";
 		document.getElementById("progress-bar-left").innerHTML = "100%&nbsp";
 	
-		clearInterval(interval);
-		alert("Time out!");
-		
-		playing = false;
+		processTimeout();
 	}
 }
 
@@ -156,6 +161,17 @@ function clearTimer(){
 	counter = 0;
 }
 
+//process timeout event
+function processTimeout(){
+	clearInterval(interval);
+	playing = false;
+	
+	//need some time to display star before showing the alert
+	setTimeout(() => {		
+		alert("Time out!");		
+	}, 300);
+}
+
 //start/restart
 function startRestart(){
 	resetTimer();	
@@ -167,6 +183,9 @@ function startRestart(){
 	
 	playing = true;
 	startTime = new Date();
+	
+	//reset the stars
+	resetStars();
 }
 
 //show number of clicks
@@ -176,15 +195,21 @@ function showNumberOfClicks(){
 
 //end game
 function endGame(){
+	
 	clearInterval(interval);
 	playing = false;
-	document.getElementById("numClicksModel").innerHTML = numClicks;
+	
+	//need some time to display star before showing the model
+	setTimeout(() => {
+		
+		document.getElementById("numClicksModel").innerHTML = numClicks;
 
-	//elapsed time
-	var timeDiff = Math.round((new Date() - startTime) / 1000); //in second
-	document.getElementById("timeToWinModel").innerHTML = timeDiff + " (seconds)";
-  
-	modal.style.display = "block";	
+		//elapsed time
+		var timeDiff = Math.round((new Date() - startTime) / 1000); //in second
+		document.getElementById("timeToWinModel").innerHTML = timeDiff + " (seconds)";
+		document.getElementById("starModel").innerHTML = document.getElementById("star").innerHTML
+		modal.style.display = "block";
+	}, 300);
 }
 
 //close model (click button handler)
@@ -205,3 +230,46 @@ window.onclick = function(event) {
 		modal.style.display = "none";
 	}
 }
+
+//calculate and display the stars
+function calculateStar(percent){	
+
+	//update star
+	switch(Math.floor(percent)){
+		case 20:// 20%
+			document.getElementById("star-4").classList.remove('star-original');
+			document.getElementById("star-4").classList.add('star-passed');
+		break;
+		case 40:// 40%
+			document.getElementById("star-3").classList.remove('star-original');
+			document.getElementById("star-3").classList.add('star-passed');
+		break;
+		case 60:// 60%
+			document.getElementById("star-2").classList.remove('star-original');
+			document.getElementById("star-2").classList.add('star-passed');
+		break;
+		case 80:// 80%
+			document.getElementById("star-1").classList.remove('star-original');
+			document.getElementById("star-1").classList.add('star-passed');
+		break;
+		case 100:// 100%
+			document.getElementById("star-0").classList.remove('star-original');
+			document.getElementById("star-0").classList.add('star-passed');
+		break;
+	}
+	
+}
+
+
+//reset the stars
+function resetStars(){	
+	
+	for (var i = 0; i < 5; i++){
+		document.getElementById("star-" + i).classList.remove('star-passed');
+		document.getElementById("star-" + i).classList.add('star-original');
+	}
+	
+}
+
+
+		
