@@ -76,3 +76,8 @@ adding a stop and reset button for the following count up, so that it does start
 and it does reset unless i press reset.
 //end game
 When all cards are matched, the game ends and the total number of clicks are displayed to the console with congrates message.
+//calculate and display the stars
+using switch At the beginning of a game, it should display 5 stars. After some number of moves, it should change 
+
+to a lower star rating. After a few more moves, it should change to a even lower star rating (down to 1).
+
