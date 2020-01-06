@@ -119,6 +119,18 @@
 	text-align: center;
 }
 
+.star{
+	font-size: 30px;
+}
+
+.star-passed{
+	color: #CCC;
+}
+
+.star-original{
+  color: blue;
+}
+
 @media only screen and (max-width: 768px) {
 
 	/* mobile phones*/
@@ -127,7 +139,6 @@
 		background-color: green;
 		display: flex;
 		flex-direction: column;
-		overflow-y: scroll;
 		flex-wrap: wrap;
 	}
 	  
